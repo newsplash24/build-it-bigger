@@ -3,6 +3,7 @@ package com.udacity.gradle.builditbigger.jokesandroidlibrary;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.TextView;
 
 public class JokesActivity extends AppCompatActivity {
@@ -18,7 +19,11 @@ public class JokesActivity extends AppCompatActivity {
         jokesTv = (TextView) findViewById(R.id.jokeTv);
 
         String joke = getIntent().getExtras().getString(Intent.EXTRA_TEXT);
-        jokesTv.setText(joke);
+
+        if (!TextUtils.isEmpty(joke)) {
+            jokesTv.setText(joke);
+        }
+
 
 
     }

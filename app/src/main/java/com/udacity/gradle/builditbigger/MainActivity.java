@@ -59,11 +59,12 @@ public class MainActivity extends AppCompatActivity {
     public void tellJoke(View view) {
 
         JokesProvider jokesProvider = new JokesProvider();
-        String joke = jokesProvider.tellMeAJoke();
-
-        Intent intent = new Intent(this, JokesActivity.class);
-        intent.putExtra(Intent.EXTRA_TEXT, joke);
-        startActivity(intent);
+//        String joke = jokesProvider.tellMeAJoke();
+//
+//        Intent intent = new Intent(this, JokesActivity.class);
+//        intent.putExtra(Intent.EXTRA_TEXT, joke);
+//        startActivity(intent);
+        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, ""));
 
     }
 
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             String name = params[0].second;
 
             try {
-                return myApiService.sayHi(name).execute().getData();
+                return myApiService.getJoke().execute().getData();
             } catch (IOException e) {
                 return e.getMessage();
             }
