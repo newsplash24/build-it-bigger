@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 //        Intent intent = new Intent(this, JokesActivity.class);
 //        intent.putExtra(Intent.EXTRA_TEXT, joke);
 //        startActivity(intent);
-        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, ""));
+        new EndpointsAsyncTask(this).execute(new Pair<Context, String>(this, ""));
 
     }
 
@@ -72,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
     static class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
         private MyApi myApiService = null;
         private Context context;
+
+        EndpointsAsyncTask (Context context) {
+            this.context = context;
+
+        }
 
         @Override
         protected String doInBackground(Pair<Context, String>... params) {
@@ -93,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 myApiService = builder.build();
             }
 
-            context = params[0].first;
+//            context = params[0].first;
             String name = params[0].second;
 
             try {
@@ -105,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+//            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
             displayJoke(result);
         }
 
