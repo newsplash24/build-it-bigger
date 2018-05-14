@@ -3,13 +3,12 @@ package com.udacity.gradle.builditbigger;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.content.Context;
 import android.support.v4.util.Pair;
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
 
-import java.util.concurrent.TimeoutException;
 import java.util.concurrent.ExecutionException;
-import com.udacity.gradle.builditbigger.MainActivity.EndpointsAsyncTask;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,9 +30,9 @@ public class EndPointTest extends AndroidTestCase {
     }
 
     @Test
-    public void AsyncTest() throws TimeoutException, InterruptedException {
+    public void AsyncTest() throws Exception {
         try {
-           EndpointsAsyncTask endpointsAsyncTask = new EndpointsAsyncTask(instrumentationCtx);
+           MainActivity.EndpointsAsyncTask endpointsAsyncTask = new MainActivity.EndpointsAsyncTask(instrumentationCtx);
 
             endpointsAsyncTask.execute(new Pair<Context, String>(getContext(), null));
 
